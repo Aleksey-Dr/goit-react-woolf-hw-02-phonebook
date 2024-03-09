@@ -1,0 +1,13 @@
+.list-item {
+    display: flex;
+    padding-left: 8px;
+    border-bottom: 1px solid #1a73e8;
+
+    &:not(:last-child) {
+        margin-bottom: 12px;
+    }
+}
+
+.phone {
+    margin-left: auto;
+}
