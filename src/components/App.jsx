@@ -5,7 +5,13 @@ import css from './App.module.scss';
 
 export class App extends Component {
     state = {
-        contacts: [],
+        contacts: [
+            {id: 'id-1', name: 'Rosie Simpson', number: '459-12-56'},
+            {id: 'id-2', name: 'Hermione Kline', number: '443-89-12'},
+            {id: 'id-3', name: 'Eden Clements', number: '645-17-79'},
+            {id: 'id-4', name: 'Annie Copeland', number: '227-91-26'},
+          ],
+        filter: '',
         name: '',
         number: '',
     };
@@ -27,13 +33,15 @@ export class App extends Component {
             number: this.state.number,
         };
 
-        console.log(contact);
-
         this.setState(prevState => ({
             contacts: [contact, ...prevState.contacts],
         }));
 
         this.reset();
+    };
+
+    handlerFilter = () => {
+
     };
 
     reset = () => {
@@ -45,7 +53,14 @@ export class App extends Component {
     // ================== /LOGIC
 
     render() {
-        const { contacts, name, number } = this.state;
+        const { contacts, filter, name, number } = this.state;
+
+        // ==================== FILTER
+        const normalizedFilter = filter.toLowerCase();
+        const filterContacts = contacts.filter(contact =>
+            contact.name.toLowerCase().includes(normalizedFilter)
+        );
+        // ==================== /FILTER
 
         return (
             <div className={css.container}>
@@ -99,16 +114,22 @@ export class App extends Component {
                     </form>
                 </div>
                 <h2 className={css.title}>Contacts</h2>
+                <label className={css['filter-label']}>
+                    <span>Find contacts by name</span>
+                    <input
+                        onChange={this.handlerInput}
+                        type="text"
+                        name="filter"
+                        className={css['filter-input']} />
+                </label>
                 <ul className={css.list}>
-                    {contacts.map(contact => {
+                    {filterContacts.map(contact => {
                         return (
                             <li key={contact.id} className={css['list-item']}>
-                                <p className={css.paragraph}>
-                                    <span>{contact.name}:</span>
-                                    <span className={css['paragraph-phone']}>
-                                        {contact.number}
-                                    </span>
-                                </p>
+                                <span>{contact.name}:</span>
+                                <span className={css['phone']}>
+                                    {contact.number}
+                                </span>
                             </li>
                         );
                     })}

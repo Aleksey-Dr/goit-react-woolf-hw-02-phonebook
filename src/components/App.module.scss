@@ -129,6 +129,8 @@
     font-size: 20px;
 
     &-item {
+        display: flex;
+        padding-left: 8px;
         border-bottom: 1px solid #1a73e8;
 
         &:not(:last-child) {
@@ -137,12 +139,34 @@
     }
 }
 
-.paragraph {
-    display: flex;
-    margin-right: auto;
-    margin-left: 8px;
+.phone {
+    margin-left: auto;
 }
 
-.paragraph-phone {
-    margin-left: auto;
+.filter-label {
+    display: flex;
+    flex-direction: column;
+
+    margin-bottom: 20px;
+}
+
+.filter-input {
+    margin-top: 12px;
+    width: 280px;
+    height: 48px;;
+
+    padding: 0 12px;
+
+    outline: none;
+    border-radius: 8px;
+    border: 2px solid  #dadce0;
+
+    background: none;
+
+    font-size: 16px;
+
+    &:focus {
+        border: 1px solid #1a73e8;
+        box-shadow: 0 10px 25px rgba(92, 99, 105, 0.2);
+    }
 }
