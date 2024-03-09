@@ -138,5 +138,11 @@
 }
 
 .paragraph {
+    display: flex;
+    margin-right: auto;
     margin-left: 8px;
+}
+
+.paragraph-phone {
+    margin-left: auto;
 }
