@@ -37,7 +37,15 @@ export class App extends Component {
             ? Notify.warning(name + ' is already in contacts')
             : this.setState(({ contacts }) => ({
                   contacts: [contact, ...contacts],
-            }));
+              }));
+    };
+
+    deleteContact = contactId => {
+        this.setState(prevState => ({
+            contacts: prevState.contacts.filter(
+                contact => contact.id !== contactId,
+            ),
+        }));
     };
 
     handlerFilter = evt => {
@@ -64,8 +72,11 @@ export class App extends Component {
                 <ContactForm onSubmit={this.addContact} />
                 <h2 className={css.title}>Contacts</h2>
                 <Filter onFilter={this.handlerFilter} />
-                <ContactList contacts={filterContacts} />
+                <ContactList
+                    onDelete={this.deleteContact}
+                    contacts={filterContacts}
+                />
             </div>
         );
-    }
-}
+    };
+};
