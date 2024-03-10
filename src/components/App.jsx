@@ -27,11 +27,9 @@ export class App extends Component {
             number,
         };
 
-        let includesName = false;
-        this.state.contacts.map(contact => {
-            contact.name === name && (includesName = true);
-            return includesName;
-        });
+        const includesName = this.state.contacts.find(contact => 
+            contact.name.toLowerCase() === name.toLowerCase()
+        );
 
         includesName
             ? Notify.warning(name + ' is already in contacts')
